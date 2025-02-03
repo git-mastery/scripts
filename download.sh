@@ -37,5 +37,5 @@ else
 fi
 
 cd $EXERCISE_NAME
-bash ./post-pull.sh
+bash ./post-download.sh
 gh repo set-default -u
