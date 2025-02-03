@@ -22,13 +22,13 @@ fi
 
 EXERCISE_NAME=$1
 
-if [[ -e $EXERCISE_NAME ]]; then
+if [[ -z $EXERCISE_NAME ]]; then
   echo "Provide a valid exercise name"
   exit 1
 fi
 
-ORG=$1
-if [[ -e $ORG ]]; then
+ORG=$2
+if [[ -z $ORG ]]; then
   echo "Forking exercise to your Github account"
   gh repo fork git-mastery/$EXERCISE_NAME --clone
 else
@@ -38,3 +38,4 @@ fi
 
 cd $EXERCISE_NAME
 bash ./post-pull.sh
+gh repo set-default -u
