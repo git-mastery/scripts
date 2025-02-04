@@ -35,6 +35,7 @@ if [[ -z $OPEN_PR ]]; then
   if [[ -z $HEAD ]]; then
     CURRENT_BRANCH=$(git branch --show-current)
     echo "Using current branch $CURRENT_BRANCH"
+    git push -u origin $CURRENT_BRANCH
     gh pr create \
       --repo git-mastery/$EXERCISE_NAME \
       --title "[$CURRENT_USERNAME] [$EXERCISE_NAME] Submission" \
@@ -42,6 +43,7 @@ if [[ -z $OPEN_PR ]]; then
       --head $CURRENT_USERNAME:$CURRENT_BRANCH
   else
     echo "Using $HEAD instead"
+    git push -u origin $HEAD
     gh pr create \
       --repo git-mastery/$EXERCISE_NAME \
       --title "[$CURRENT_USERNAME] [$EXERCISE_NAME] Submission" \
@@ -50,5 +52,12 @@ if [[ -z $OPEN_PR ]]; then
   fi
 else
   # If a PR already exists, we can just push directly
-  git push
+  if [[ -z $HEAD ]]; then
+    CURRENT_BRANCH=$(git branch --show-current)
+    echo "Pushing $CURRENT_BRANCH"
+    git push -u origin $CURRENT_BRANCH
+  else
+    echo "Pushing $HEAD"
+    git push -u origin $HEAD
+  fi
 fi
