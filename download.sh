@@ -27,7 +27,7 @@ if [[ -z $EXERCISE_NAME ]]; then
   exit 1
 fi
 
-if [[ -f ../.org_name ]]; then
+if [[ -f "../.org_name" ]]; then
   # If .org_name is found using the Git Mastery setup, we use that instead
   org_name=$(cat ../.org_name)
   echo "Forking exercise to $org_name"
