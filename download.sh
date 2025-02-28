@@ -33,7 +33,6 @@ if [[ -f .org_name ]]; then
   echo "Forking exercise to $org_name"
   gh repo fork git-mastery/$EXERCISE_NAME --org $org_name --clone
 else
-  echo $(ls)
   ORG=$2
   if [[ -z $ORG ]]; then
     echo "Forking exercise to your Github account"
