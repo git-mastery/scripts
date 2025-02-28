@@ -27,14 +27,13 @@ if [[ -z $EXERCISE_NAME ]]; then
   exit 1
 fi
 
-ls
-
 if [[ -f "../.org_name" ]]; then
   # If .org_name is found using the Git Mastery setup, we use that instead
   org_name=$(cat ../.org_name)
   echo "Forking exercise to $org_name"
   gh repo fork git-mastery/$EXERCISE_NAME --org $org_name --clone
 else
+  echo $(ls)
   ORG=$2
   if [[ -z $ORG ]]; then
     echo "Forking exercise to your Github account"
